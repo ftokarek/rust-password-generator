@@ -1,0 +1,11 @@
+[package]
+name = "rust-password-generator"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+clap = { version = "4", features = ["derive"] }
+rand = "0.9.1"
+anyhow = "1.0"
+arboard = "3"
+copypasta = "0.10.2"
