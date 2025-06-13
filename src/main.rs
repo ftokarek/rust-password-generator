@@ -8,7 +8,6 @@ use std::env;
 
 fn main() 
 {
-
     // Get arguments, skip program name
     let mut args = env::args();
     let _program = args.next();
@@ -32,7 +31,7 @@ fn main()
         {
             charset.push_str("0123456789");
         }
-        if cli_args.symbols
+        if cli_args.symbols 
         {
             charset.push_str("!@#$%^&*()-_=+[]{};:,.<>?/|");
         }
@@ -43,13 +42,14 @@ fn main()
             return;
         }
 
+        let mut passwords = Vec::new();
         for _ in 0..cli_args.count 
         {
             let password = generator::generate_password(cli_args.length, &charset);
-            println!("Generated password: {}", password);
+            passwords.push(password);
         }
-
-        entropy::calculate_entropy();
+        output::print_passwords(&passwords);
+        entropy::calculate_entropy(&passwords, &charset);
     } 
     else 
     {
@@ -93,7 +93,6 @@ fn main()
         let mut symbols_input = String::new();
         io::stdin().read_line(&mut symbols_input).unwrap();
         let symbols = symbols_input.trim().to_lowercase() == "y";
-
         let mut charset = String::new();
         if lowercase 
         {
@@ -119,14 +118,13 @@ fn main()
         }
 
         let mut passwords = Vec::new();
-
         for _ in 0..count 
         {
             let password = generator::generate_password(length, &charset);
             passwords.push(password);
         }
-        output::print_passwords(&passwords);
 
-        entropy::calculate_entropy();
+        output::print_passwords(&passwords);
+        entropy::calculate_entropy(&passwords, &charset);
     }
 }
