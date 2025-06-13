@@ -148,4 +148,3 @@ This project is licensed under the MIT License.
 ## 👤 Author
 
 Created by Franciszek Tokarek.  
-Contributions and suggestions are welcome!
