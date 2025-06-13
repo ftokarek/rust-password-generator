@@ -1,3 +1,7 @@
-pub fn handle_output() {
-    println!("(output) Output handling logic would run here.");
+pub fn print_passwords(passwords: &[String]) 
+{
+    for (i, password) in passwords.iter().enumerate() 
+    {
+        println!("Password {}: {}", i + 1, password);
+    }
 }
